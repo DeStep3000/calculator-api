@@ -44,16 +44,17 @@ jobs:
         run: docker build -t destep/calculator-api .
 
       # Шаг 7: Проверка Docker-образа на уязвимости с помощью Trivy
-      - name: Scan Docker image for vulnerabilities
-        uses: aquasecurity/trivy-action@0.28.0
+      - name: Cache Trivy DB
+        uses: actions/cache@v2
         with:
-          scan-type: 'fs'
-          ignore-unfixed: true
-          format: 'sarif'
-          output: 'trivy-results.sarif'
-          severity: 'CRITICAL'
-          image-ref: destep/calculator-api
+          path: ~/.cache/trivy
+          key: ${{ runner.os }}-trivy-${{ hashFiles('**/trivy-config.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-trivy-
 
+      - name: Install Trivy
+        uses: aquasecurity/trivy-action@0.28.0
+        
       # Шаг 8: Вход в Docker Hub
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
