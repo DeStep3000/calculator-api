@@ -7,12 +7,12 @@ def read_root():
     return {"message": "Добро пожаловать в API калькулятора"}
 
 @app.get("/add")
-def add(a: float, b: float):
-    return {"result": a + b}
+async def add(x: float, y: float):
+    return {"result": x + y}
 
 @app.get("/subtract")
-def subtract(a: float, b: float):
-    return {"result": a - b}
+async def subtract(x: float, y: float):
+    return {"result": x - y}
 
 @app.get("/multiply")
 def multiply(a: float, b: float):
