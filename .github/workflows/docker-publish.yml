@@ -45,7 +45,7 @@ jobs:
 
       # Шаг 7: Проверка Docker-образа на уязвимости с помощью Trivy
       - name: Scan Docker image for vulnerabilities
-        uses: aquasecurity/trivy-action@v0.8.1
+        uses: aquasecurity/trivy-action@v0.51
         with:
           image-ref: destep/calculator-api
 
