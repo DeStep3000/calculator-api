@@ -23,3 +23,4 @@ def divide(a: float, b: float):
     if b == 0:
         raise HTTPException(status_code=400, detail="Деление на ноль запрещено")
     return {"result": a / b}
+#бу
